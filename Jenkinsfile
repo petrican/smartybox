@@ -1,6 +1,12 @@
 node {
     def app
 
+    stage('Initialize')
+    {
+        def dockerHome = tool 'MyDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
+
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -10,8 +16,9 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
-        app = docker.build("getintodevops/hellonode")
+        docker.withServer('tcp://localhost:2345') {
+            app = docker.build("getintodevops/hellonode")
+        }
     }
 
     stage('Test image') {
