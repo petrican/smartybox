@@ -1,4 +1,3 @@
 # smartybox
 SmartyBox 
-
 by Petrica
