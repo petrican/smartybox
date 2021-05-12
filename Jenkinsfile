@@ -1,4 +1,5 @@
 pipeline {
+<<<<<<< HEAD
     def app
 
     agent {
@@ -35,6 +36,18 @@ pipeline {
             docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
                 app.push("${env.BUILD_NUMBER}")
                 app.push("latest")
+=======
+    agent {
+        docker {
+            image 'node:lts-buster-slim' 
+            args '-p 3000:3000' 
+        }
+    }
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'npm install' 
+>>>>>>> parent of 23e1e29... Update Jenkinsfile
             }
         }
     }
