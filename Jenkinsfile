@@ -29,7 +29,7 @@ node {
         // stop the previous container running
         sh 'export DOCKER_CONTAINER_ID=$(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")'
         sh 'echo $DOCKER_CONTAINER_ID > outfile'
-        currContainer = readFile 'outfile'
+        def currContainer = readFile 'outfile'
         echo "currContainer is : ${$currContainer}"
 
         // sh 'export DOCKER_CONTAINER_ID=$(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")'
