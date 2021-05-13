@@ -21,14 +21,12 @@ node {
     }
 
     stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
         app = docker.build("petrican/smartybox")
     }
 
-    stage('Build Docker test'){
-     sh 'docker build -t smartybox -f Dockerfile --no-cache .'
-    }
+    // stage('Build Docker image with no-cache'){
+    //  sh 'docker build -t smartybox -f Dockerfile --no-cache .'
+    // }
 
     // stage('Test image') {
     //     /* Ideally, we would run a test framework against our image.
