@@ -25,6 +25,9 @@ node {
     }
 
     stage('Deploy stage') {
+        // stop the previous container running
+        sh 'docker stop $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")'
+        // run in a container the image petrican/smartybox
         sh 'docker run -d --rm -p 1377:80 petrican/smartybox'
     }
 
