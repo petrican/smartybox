@@ -7,6 +7,13 @@ node {
         env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
 
+    stage('Environment') {
+      sh 'git --version'
+      echo "Branch: ${env.BRANCH_NAME}"
+      sh 'docker -v'
+      sh 'printenv'
+    }
+
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -27,6 +34,9 @@ node {
     //         sh 'echo "Tests passed"'
     //     }
     // }
+
+    
+
 
     // stage('Push image') {
     //     /* Finally, we'll push the image with two tags:
