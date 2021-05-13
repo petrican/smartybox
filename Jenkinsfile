@@ -28,13 +28,8 @@ node {
     stage('Deploy stage') {
         // stop the previous container running
         sh 'export DOCKER_CONTAINER_ID=$(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")'
-        sh 'echo $DOCKER_CONTAINER_ID > outfile'
-        def currContainer = readFile 'outfile'
-        echo "currContainer is : ${$currContainer}"
-
-        // sh 'export DOCKER_CONTAINER_ID=$(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")'
-        // sh 'echo $DOCKER_CONTAINER_ID'
-        // sh 'if [ -n "$DOCKER_CONTAINER_ID" ]; then docker stop "$DOCKER_CONTAINER_ID"; else echo "No container running petrican/smartybox"; fi'
+        sh 'echo $DOCKER_CONTAINER_ID'
+        sh 'if [ -n "$DOCKER_CONTAINER_ID" ]; then docker stop "$DOCKER_CONTAINER_ID"; else echo "No container running petrican/smartybox"; fi'
 
         // docker stop $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")
         // run in a container the image petrican/smartybox
