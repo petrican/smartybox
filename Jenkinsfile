@@ -5,8 +5,6 @@ node {
     {
         def dockerHome = tool 'myDocker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
-        registryCredential = 'petrican' 
-5       dockerImage = 'petrican/smartybox' 
     }
 
     stage('Environment') {
@@ -23,8 +21,8 @@ node {
     }
 
     stage('Build image') {
-        // sh 'docker build -t petrican/smartybox -f Dockerfile --no-cache .'  // - use this to build without cache
-        app = docker.build(dockerImage)
+        sh 'docker build -t petrican/smartybox -f Dockerfile --no-cache .'  // - use this to build without cache
+        // app = docker.build("petrican/smartybox")
     }
 
     stage('Deploy stage') {
@@ -52,7 +50,7 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        // docker.withRegistry( '', registryCredential) {
+        // docker.withRegistry('https://registry.hub.docker.com', ) {
         //     app.push("${env.BUILD_NUMBER}")
         //     app.push("latest")
         // }
