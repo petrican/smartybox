@@ -21,6 +21,7 @@ node {
     }
 
     stage('Build image') {
+        // sh 'docker build -t petrican/smartybox -f Dockerfile --no-cache .'  // - use this to build without cache
         app = docker.build("petrican/smartybox")
     }
 
@@ -34,10 +35,6 @@ node {
         // run in a container the image petrican/smartybox
         sh 'docker run -d --rm -p 1377:80 petrican/smartybox'
     }
-
-    // stage('Build Docker image with no-cache'){
-    //  sh 'docker build -t smartybox -f Dockerfile --no-cache .'
-    // }
 
     // stage('Test image') {
     //     /* Ideally, we would run a test framework against our image.
