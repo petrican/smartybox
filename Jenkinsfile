@@ -29,11 +29,6 @@ node {
         // stop the previous container running
         sh 'docker ps --filter ancestor=petrican/smartybox -q | xargs docker stop'
 
-        // sh 'export DOCKER_CONTAINER_ID=$(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")'
-        // sh 'echo $DOCKER_CONTAINER_ID'
-        // sh 'if [ -n "$DOCKER_CONTAINER_ID" ]; then docker stop "$DOCKER_CONTAINER_ID"; else echo "No container running petrican/smartybox"; fi'
-
-        // docker stop $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")
         // run in a container the image petrican/smartybox
         sh 'docker run -d --rm -p 1377:80 petrican/smartybox'
     }
