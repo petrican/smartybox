@@ -26,6 +26,10 @@ node {
         app = docker.build("petrican/smartybox")
     }
 
+    stage('Build Docker test'){
+     sh 'docker build -t smartybox -f Dockerfile --no-cache .'
+    }
+
     // stage('Test image') {
     //     /* Ideally, we would run a test framework against our image.
     //      * For this example, we're using a Volkswagen-type approach ;-) */
