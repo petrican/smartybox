@@ -5,6 +5,8 @@ WORKDIR /usr/src/app
 
 COPY frontend/package.json .
 
+RUN pwd
+
 RUN cd ./frontend
 
 RUN yarn install
