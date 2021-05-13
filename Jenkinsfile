@@ -21,8 +21,8 @@ node {
     }
 
     stage('Build image') {
-        // sh 'docker build -t petrican/smartybox -f Dockerfile --no-cache .'  // - use this to build without cache
-        app = docker.build("petrican/smartybox")
+        sh 'docker build -t petrican/smartybox -f Dockerfile --no-cache .'  // - use this to build without cache
+        // app = docker.build("petrican/smartybox")
     }
 
     stage('Deploy stage') {
