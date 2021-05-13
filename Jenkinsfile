@@ -28,7 +28,8 @@ node {
         // stop the previous container running
         sh 'export DOCKER_CONTAINER_ID=$(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")'
         sh 'echo $DOCKER_CONTAINER_ID'
-        sh '[[ ! -z "$DOCKER_CONTAINER_ID" ]] && echo "Not empty" '
+        sh 'if [ -z $DOCKER_CONTAINER_ID ]; then echo "var is unset"; else echo "var is set"; fi'
+
         // docker stop $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")
         // run in a container the image petrican/smartybox
         sh 'docker run -d --rm -p 1377:80 petrican/smartybox'
