@@ -24,6 +24,10 @@ node {
         app = docker.build("petrican/smartybox")
     }
 
+    stage('Deploy stage') {
+        sh 'docker run -it --rm -p 1377:80 petrican/smartybox'
+    }
+
     // stage('Build Docker image with no-cache'){
     //  sh 'docker build -t smartybox -f Dockerfile --no-cache .'
     // }
