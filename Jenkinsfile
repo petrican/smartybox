@@ -25,7 +25,7 @@ node {
     }
 
     stage('Deploy stage') {
-        sh 'docker run --rm -p 1377:80 petrican/smartybox'
+        sh 'docker run -d --rm -p 1377:80 petrican/smartybox'
     }
 
     // stage('Build Docker image with no-cache'){
