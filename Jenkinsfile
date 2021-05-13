@@ -25,7 +25,7 @@ node {
     }
 
     stage('Deploy stage') {
-        def dockerContainer = tool name: "$(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")"
+        def dockerContainer = tool name: "$(docker ps -a -q --filter ancestor=petrican/smartybox --format=\"{{.ID}}\")"
         echo "CONTAINER_ID => ${dockerContainer}"
         // stop the previous container running
         // sh 'if $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}"); then docker stop $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}") else echo 0; fi'
