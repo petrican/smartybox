@@ -3,11 +3,15 @@ FROM node:14
 # Create app directory
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY frontend/package.json .
 
-RUN npm install
+RUN cd frontend
 
-COPY . .
+RUN yarn install
+
+RUN cd..
+
+COPY src ./src
 
 EXPOSE 8080
 CMD [ "node", "server.js" ]

@@ -16,9 +16,7 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        //docker.withServer('tcp://localhost:2345') {
-            app = docker.build("getintodevops/hellonode")
-        //}
+        app = docker.build("getintodevops/hellonode")
     }
 
     stage('Test image') {
