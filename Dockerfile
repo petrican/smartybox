@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 
 COPY frontend/package.json .
 
-RUN yarn install
+RUN yarn install --network-timeout=30000
 
 COPY frontend/public ./public
 COPY frontend/src ./src
