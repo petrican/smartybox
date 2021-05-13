@@ -25,10 +25,12 @@ node {
     }
 
     stage('Deploy stage') {
+        def dockerContainer = tool name: "$(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}")"
+        echo "CONTAINER_ID => ${dockerContainer}"
         // stop the previous container running
-        sh 'if $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}"); then docker stop $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}") else echo 0'
-        // run in a container the image petrican/smartybox
-        sh 'docker run -d --rm -p 1377:80 petrican/smartybox'
+        // sh 'if $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}"); then docker stop $(docker ps -a -q --filter ancestor=petrican/smartybox --format="{{.ID}}") else echo 0; fi'
+        // // run in a container the image petrican/smartybox
+        // sh 'docker run -d --rm -p 1377:80 petrican/smartybox'
     }
 
     // stage('Build Docker image with no-cache'){
