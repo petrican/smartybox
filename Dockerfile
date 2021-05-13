@@ -10,6 +10,8 @@ RUN yarn install
 COPY frontend/public ./public
 COPY frontend/src ./src
 
+RUN yarn run test
+
 RUN yarn build
 
 # production environment
