@@ -10,5 +10,7 @@ RUN yarn install
 COPY frontend/public ./public
 COPY frontend/src ./src
 
-EXPOSE 8080
-CMD [ "node", "server.js" ]
+RUN yarn build
+
+# EXPOSE 8080
+CMD [ "serve", "-s build" ]
