@@ -1,0 +1,23 @@
+{
+  "name": "smartybox-backend",
+  "version": "1.0.0",
+  "description": "Smartybox Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petrican/smartybox.git"
+  },
+  "keywords": [
+    "smartybox",
+    "backend"
+  ],
+  "author": "Petrica Nanca",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/petrican/smartybox/issues"
+  },
+  "homepage": "https://github.com/petrican/smartybox#readme"
+}
