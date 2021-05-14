@@ -23,7 +23,7 @@ node {
     stage('Build image') {
         // sh 'docker build -t petrican/smartybox -f Dockerfile --no-cache .'  // - use this to build without cache
         // app = docker.build("-f Dockerfile" ,"--no-cache", "-t petrican/smartybox")
-        app = docker.build("petrican/smartybox")
+        app = docker.build("petrican/smartybox-frontend")
     }
 
     stage('Deploy stage') {
@@ -31,7 +31,7 @@ node {
         sh 'docker ps --filter ancestor=petrican/smartybox -q | xargs docker stop'
 
         // run in a container the image petrican/smartybox
-        sh 'docker run -d --rm -p 1377:80 petrican/smartybox'
+        sh 'docker run -d --rm -p 1377:80 petrican/smartybox-frontend'
     }
 
     // stage('Test image') {
