@@ -18,6 +18,9 @@ verifyToken = (req, res, next) => {
         message: "Unauthorized!"
       });
     }
+
+    // check if the token is found among the expired ones
+
     req.userId = decoded.id;
     next();
   });
