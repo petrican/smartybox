@@ -3,7 +3,7 @@ import express from "express";
 import * as bodyParser from "body-parser";
 
 import cors from "cors";
-import * as allRoutes from "./routes/index";
+import {allRoutes} from "./routes/index";
 import {AdministratorDbSeed} from "./utils/administrator.dbseed";
 
 
