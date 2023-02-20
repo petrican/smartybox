@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
 import { User } from "../entity/User";
 import { Md5 } from "ts-md5/dist/md5";
 import * as jwt from "jsonwebtoken";
+import {AppDataSource} from "../data-source";
 
 export const login = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { username, password } = req.body;
-    const userRepository = getRepository(User);
+    const userRepository = AppDataSource.getRepository(User);
     // find user in the DB
     const user = await userRepository.findOne({
       where: [
@@ -32,6 +32,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
       return res.status(401).send({ error: { message: "Unauthorized." } });
     }
   } catch (err) {
+    console.log(err)
     return res.status(500).send({ error: { message: "Invalid payload." } });
   }
 };

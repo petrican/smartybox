@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import {FindOneOptions, getRepository} from "typeorm";
+import {FindOneOptions} from "typeorm";
 import { Todo } from "../entity/Todo";
+import {AppDataSource} from "../data-source";
 
 export const createTodo = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const newTodo = getRepository(Todo).create(req.body);
-  const results = await getRepository(Todo).save(newTodo);
+  const newTodo = AppDataSource.getRepository(Todo).create(req.body);
+  const results = await AppDataSource.getRepository(Todo).save(newTodo);
 
   return res.json(results);
 };
@@ -17,7 +18,7 @@ export const getAll = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const todoRepository = getRepository(Todo);
+    const todoRepository = AppDataSource.getRepository(Todo);
     const todos = await todoRepository.find();
     if (todos) {
       return res.json([...todos]);
@@ -33,7 +34,7 @@ export const getOne = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const oneRes = await getRepository(Todo).findOne(req.params.id as FindOneOptions);
+  const oneRes = await AppDataSource.getRepository(Todo).findOne(req.params.id as FindOneOptions);
 
   return res.json(oneRes);
 };
@@ -42,10 +43,10 @@ export const updateTodo = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const todoItem = await getRepository(Todo).findOne(req.params.id as FindOneOptions);
+  const todoItem = await AppDataSource.getRepository(Todo).findOne(req.params.id as FindOneOptions);
   if (todoItem) {
-    getRepository(Todo).merge(todoItem, req.body);
-    const results = await getRepository(Todo).save(todoItem);
+    AppDataSource.getRepository(Todo).merge(todoItem, req.body);
+    const results = await AppDataSource.getRepository(Todo).save(todoItem);
     return res.json(results);
   }
   return res.status(404).json({ msg: "No todo found" });
@@ -57,7 +58,7 @@ export const deleteTodo = async (
 ): Promise<Response> => {
   const { id } = req.params;
   if (id) {
-    const results = await getRepository(Todo).delete(id);
+    const results = await AppDataSource.getRepository(Todo).delete(id);
 
     return res.json(results);
   }
