@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "smartybox-plugin",
+  "version": "0.0.1",
+  "generators": {
+    "smartybox-plugin": {
+      "factory": "./src/generators/smartybox-plugin/generator",
+      "schema": "./src/generators/smartybox-plugin/schema.json",
+      "description": "smartybox-plugin generator"
+    },
+    "add-solid-js": {
+      "factory": "./src/generators/add-solid-js/generator",
+      "schema": "./src/generators/add-solid-js/schema.json",
+      "description": "add-solid-js generator"
+    }
+  }
+}
