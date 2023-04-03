@@ -49,12 +49,13 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 
 export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
+  normalizedOptions.projectRoot = `apps/${options.name}`;
   addProjectConfiguration(
     tree,
     normalizedOptions.projectName,
     {
       root: normalizedOptions.projectRoot,
-      projectType: 'library',
+      projectType: 'application',
       sourceRoot: `${normalizedOptions.projectRoot}/src`,
       targets: {
         build: {
@@ -66,4 +67,10 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
   );
   addFiles(tree, normalizedOptions);
   await formatFiles(tree);
+
+
+  const dirPath = `${process.cwd()}/apps/${options.name}`;
+  console.log("Attempting to create dir " + dirPath)
+
+
 }
