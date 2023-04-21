@@ -7,8 +7,6 @@ import {applicationGenerator as reactAppGenerator,} from '@nrwl/react';
 import {Linter} from "@nrwl/linter";
 
 
-
-
 export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
   await reactAppGenerator(tree, {
     name: options.name, e2eTestRunner: 'none', linter: Linter.EsLint, style: 'css', bundler: 'vite'
@@ -48,21 +46,48 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
                     <body>
                         <noscript>You need to enable JavaScript to run this app</noscript>
                         <div id="root"></div>
-                        <script src="/src/index.tsx"></script>
+                        <script type="module" src="/src/index.tsx"></script>
                     </body>
             </html>`)
 
-  tree.write(`apps/${names(options.name).fileName}/src/index.tsx`, `import type { Component } from 'solid-js';
-    import { render } from 'solid-js/web';
+  tree.write(`apps/${names(options.name).fileName}/src/App.tsx`, `import type { Component } from 'solid-js';
+    import styles from './App.module.css';
 
     const App: Component = () => {
-       return (h1 Hello ${names(options.name).className}<h1>) as any)
+       return (<div><p>Solid App NX </p></div>)
     };
 
     export default App;
+  `)
 
-    render(App as any, document.getElementById('root'))
-    `)
+  tree.write(`apps/${names(options.name).fileName}/src/index.css`, `body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }`)
+
+  tree.write(`apps/${names(options.name).fileName}/src/index.tsx`, `
+    /* @refresh reload */
+    import { render } from 'solid-js/web';
+
+    import './index.css';
+    import App from './App';
+
+    const root = document.getElementById('root');
+
+    if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
+      throw new Error(
+        'Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got mispelled?',
+      );
+    }
+
+    render(() => <App />, root!);
+  `)
 
   updateJson(tree, `apps/${names(options.name).fileName}/project.json`, (json) => ({
     ...json, targets: {
