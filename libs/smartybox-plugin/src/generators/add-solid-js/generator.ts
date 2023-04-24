@@ -54,7 +54,7 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
     import styles from './App.module.css';
 
     const App: Component = () => {
-       return (<div><p>Solid App NX </p></div>)
+       return (<div><header class={styles.header}>Solid App NX </header></div>)
     };
 
     export default App;
@@ -70,6 +70,45 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }`)
+
+  tree.write(`apps/${names(options.name).fileName}/src/App.module.css`,
+    `
+    .App {
+      text-align: center;
+    }
+
+    .logo {
+      animation: logo-spin infinite 20s linear;
+      height: 40vmin;
+      pointer-events: none;
+    }
+
+    .header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
+
+    .link {
+      color: #b318f0;
+     }
+
+    @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+    }
+
+    `)
+
 
   tree.write(`apps/${names(options.name).fileName}/src/index.tsx`, `
     /* @refresh reload */
