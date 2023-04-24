@@ -54,7 +54,7 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
     import styles from './App.module.css';
 
     const App: Component = () => {
-       return (<div><p>Solid App NX </p></div>)
+       return (<div><header class={styles.header}>>Solid App NX </header></div>)
     };
 
     export default App;
