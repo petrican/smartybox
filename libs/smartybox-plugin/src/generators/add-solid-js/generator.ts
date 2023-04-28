@@ -1,18 +1,21 @@
-import {
-  formatFiles, names, Tree, updateJson
-} from '@nrwl/devkit';
+import { formatFiles, names, Tree, updateJson } from '@nx/devkit';
 
-import {AddSolidJsGeneratorSchema} from './schema';
-import {applicationGenerator as reactAppGenerator,} from '@nrwl/react';
-import {Linter} from "@nrwl/linter";
-
+import { AddSolidJsGeneratorSchema } from './schema';
+import { applicationGenerator as reactAppGenerator } from '@nx/react';
+import { Linter } from '@nx/linter';
 
 export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
   await reactAppGenerator(tree, {
-    name: options.name, e2eTestRunner: 'none', linter: Linter.EsLint, style: 'css', bundler: 'vite'
+    name: options.name,
+    e2eTestRunner: 'none',
+    linter: Linter.EsLint,
+    style: 'css',
+    bundler: 'vite',
   });
 
-  tree.write(`apps/${names(options.name).fileName}/vite.config.ts`, `
+  tree.write(
+    `apps/${names(options.name).fileName}/vite.config.ts`,
+    `
     import { defineConfig } from 'vite';
     import solidPlugin from 'vite-plugin-solid';
     import viteTsConfigPaths from 'vite-tsconfig-paths'
@@ -31,9 +34,12 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
         target: 'esnext',
       },
     });
-    `)
+    `
+  );
 
-  tree.write(`apps/${names(options.name).fileName}/index.html`, `<!DOCTYPE html>
+  tree.write(
+    `apps/${names(options.name).fileName}/index.html`,
+    `<!DOCTYPE html>
                 <html lang="en">
                     <head>
                         <meta charset="utf-8" />
@@ -48,9 +54,12 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
                         <div id="root"></div>
                         <script type="module" src="/src/index.tsx"></script>
                     </body>
-            </html>`)
+            </html>`
+  );
 
-  tree.write(`apps/${names(options.name).fileName}/src/App.tsx`, `import type { Component } from 'solid-js';
+  tree.write(
+    `apps/${names(options.name).fileName}/src/App.tsx`,
+    `import type { Component } from 'solid-js';
     import styles from './App.module.css';
 
     const App: Component = () => {
@@ -58,9 +67,12 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
     };
 
     export default App;
-  `)
+  `
+  );
 
-  tree.write(`apps/${names(options.name).fileName}/src/index.css`, `body {
+  tree.write(
+    `apps/${names(options.name).fileName}/src/index.css`,
+    `body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -69,9 +81,11 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
 
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  }`)
+  }`
+  );
 
-  tree.write(`apps/${names(options.name).fileName}/src/App.module.css`,
+  tree.write(
+    `apps/${names(options.name).fileName}/src/App.module.css`,
     `
     .App {
       text-align: center;
@@ -107,10 +121,12 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
     }
     }
 
-    `)
+    `
+  );
 
-
-  tree.write(`apps/${names(options.name).fileName}/src/index.tsx`, `
+  tree.write(
+    `apps/${names(options.name).fileName}/src/index.tsx`,
+    `
     /* @refresh reload */
     import { render } from 'solid-js/web';
 
@@ -126,31 +142,42 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
     }
 
     render(() => <App />, root!);
-  `)
+  `
+  );
 
-  updateJson(tree, `apps/${names(options.name).fileName}/project.json`, (json) => ({
-    ...json, targets: {
-      ...json.targets,
-    }
-  }))
+  updateJson(
+    tree,
+    `apps/${names(options.name).fileName}/project.json`,
+    (json) => ({
+      ...json,
+      targets: {
+        ...json.targets,
+      },
+    })
+  );
 
-  updateJson(tree, `apps/${names(options.name).fileName}/tsconfig.json`, (json) => ({
-    ...json, compilerOptions: {
-      strict: true,
-      target: 'ESNext',
-      module: 'ESNext',
-      moduleResolution: 'node',
-      allowSyntheticDefaultImports: true,
-      esModuleInterop: true,
-      jsx: 'preserve',
-      jsxImportSource: 'solid-js',
-      types: ['vite/client'],
-      noEmit: true,
-      isolatedModules: true,
-    }
-  }))
+  updateJson(
+    tree,
+    `apps/${names(options.name).fileName}/tsconfig.json`,
+    (json) => ({
+      ...json,
+      compilerOptions: {
+        strict: true,
+        target: 'ESNext',
+        module: 'ESNext',
+        moduleResolution: 'node',
+        allowSyntheticDefaultImports: true,
+        esModuleInterop: true,
+        jsx: 'preserve',
+        jsxImportSource: 'solid-js',
+        types: ['vite/client'],
+        noEmit: true,
+        isolatedModules: true,
+      },
+    })
+  );
 
-  tree.delete(`apps/${names(options.name).fileName}/src/main.tsx`)
-  tree.delete(`apps/${names(options.name).fileName}/src/app`)
+  tree.delete(`apps/${names(options.name).fileName}/src/main.tsx`);
+  tree.delete(`apps/${names(options.name).fileName}/src/app`);
   await formatFiles(tree);
 }
