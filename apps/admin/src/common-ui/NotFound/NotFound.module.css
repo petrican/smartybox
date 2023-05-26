@@ -1,0 +1,9 @@
+.notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6c65e5;
+  font-family: 'Sen', sans-serif;
+  font-size: 6rem;
+  min-height: 70vh;
+}
