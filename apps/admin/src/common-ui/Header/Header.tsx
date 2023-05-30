@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
 import {Component} from "solid-js";
 
-const App: Component = () => {
+const Header: Component = () => {
   return (
     <header class={styles.header}>
        Smartybox
@@ -9,4 +9,4 @@ const App: Component = () => {
   );
 };
 
-export default App;
+export default Header;
