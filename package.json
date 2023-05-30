@@ -61,6 +61,7 @@
     "prettier": "^2.6.2",
     "react-refresh": "^0.10.0",
     "reflect-metadata": "^0.1.13",
+    "sass": "^1.62.1",
     "solid-devtools": "^0.26.1",
     "ts-jest": "29.1.0",
     "ts-md5": "^1.3.1",

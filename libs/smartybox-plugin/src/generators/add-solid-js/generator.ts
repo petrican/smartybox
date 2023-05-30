@@ -60,7 +60,7 @@ export default async function (tree: Tree, options: AddSolidJsGeneratorSchema) {
   tree.write(
     `apps/${names(options.name).fileName}/src/App.tsx`,
     `import type { Component } from 'solid-js';
-    import styles from './App.module.css';
+    import styles from './App.module.scss';
 
     const App: Component = () => {
        return (<div><header class={styles.header}>Solid App NX </header></div>)

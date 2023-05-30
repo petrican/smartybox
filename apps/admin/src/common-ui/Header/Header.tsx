@@ -1,4 +1,4 @@
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 import {Component} from "solid-js";
 
 const Header: Component = () => {
