@@ -1,11 +1,16 @@
 import styles from './LoginForm.module.scss';
-import {Component} from "solid-js";
+import {createSignal,Component, onMount} from "solid-js";
 import Title from "../Title/Title";
 
 const LoginForm: Component = () => {
+  const [isLoaded, setIsLoaded] = createSignal(false);
+
+  onMount(() => {
+    setTimeout(() => { setIsLoaded(true); }, 1000);
+  })
 
   return (
-    <div class={styles['login-form']}>
+    <div class={styles[isLoaded() ? 'login-form' : 'login-form-hidden']}>
       <Title
         captionText="Login"
         size="h1"

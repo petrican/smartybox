@@ -1,19 +1,24 @@
 @import '../Variables.module.scss';
 
 .login-form {
+  position: fixed;
+  width: 100%;
+  bottom: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid $gray;
   padding: 20px;
-  transform: translate(0%, 290%);
-  transition: transform 4s;
+  transition: 2s;
 }
 
-.login-form:hover {
-  transform: translate(-50%, -50%);
-  color: gray
+.login-form-hidden {
+  position: fixed;
+  width: 100%;
+  bottom: -300px;
+  display: flex;
 }
+
 
 .login-form-title {
   color: $pink;
