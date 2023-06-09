@@ -17,6 +17,18 @@ const LoginForm: Component = () => {
         fontWeight="600"
         cssClass={styles['login-form-title']}
       />
+      <form>
+        <div>
+          <input type="text" name="username" placeholder="Username" autofocus={true} />
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="Password" />
+        </div>
+        <div>
+          <button type="submit">Login</button>
+        </div>
+
+      </form>
     </div>
   );
 };
