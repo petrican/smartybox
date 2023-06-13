@@ -7,11 +7,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #7489AA;
+  border: 1px solid $border-color;
   padding: 20px;
   transition: ease-in 1s;
   border-radius: 6px;
-  background: #F2F4F7;
+  background: $modal-bg;
   height: 385px;
 
 
@@ -21,14 +21,14 @@
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 1px solid #7489AA;
+    border: 1px solid $border-color;
     border-radius: 6px;
-    outline-color: #7489AA;
+    outline-color: $border-color;
   }
 
   button {
     width: 200px;
-    border: 1px solid #317787;
+    border: 1px solid $button-color;
     background: #317787;
     color: $white;
     font-weight: $font-weight-bold;
@@ -50,7 +50,7 @@
 
 
 .login-form-title {
-  color: #317787;
+  color: $button-color;
   font-size: 2.0625rem;
   line-height: 3rem;
 }
