@@ -1,8 +1,8 @@
-import {JSX} from 'solid-js';
-import {useNavigate, NavigateProps} from '@solidjs/router';
+import {Component, JSX} from 'solid-js';
+import {useNavigate} from '@solidjs/router';
 
-interface ProtectedRouteProps extends NavigateProps {
-  component: () => JSX.Element;
+interface ProtectedRouteProps {
+  component: Component;
   isAuthenticated: boolean;
   path: string;
 }
