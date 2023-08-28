@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
-import viteTsConfigPaths from 'vite-tsconfig-paths';
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import devtools from 'solid-devtools/vite'
 export default defineConfig({
   plugins: [
@@ -14,9 +14,7 @@ export default defineConfig({
       },
     }),
     solidPlugin(),
-    viteTsConfigPaths({
-      root: '../../',
-    }),
+    nxViteTsPaths(),
   ],
   server: {
     port: 3000,
