@@ -37,6 +37,10 @@
     margin-top: 10px;
     font-size: 1rem;
   }
+  .error-message {
+    color: $error-color;
+    font-size: $font-size-small;
+  }
 }
 
 .login-form-hidden {
