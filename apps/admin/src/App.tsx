@@ -9,19 +9,13 @@ import PrivateRoute from "./auth/PrivateRoute";
 import Dashboard from "./features/dashboard/Dashboard";
 
 const App: Component = () => {
-  const isAuthenticated = true;
   return (
     <div>
       <Header />
       <div class={styles['container']}>
         <Routes>
           {/*<Route path="/users" component={Users} />*/}
-          {/*<Route path="/" component={Home} />*/}
-          <PrivateRoute
-            path="/"
-            component={Dashboard}
-            isAuthenticated={isAuthenticated}
-          />
+          <Route path="/" component={<PrivateRoute path="/" component={Dashboard} />} />
           <Route path="/login" component={LoginForm} />
           <Route path="*" element={<NotFound />} />
         </Routes>

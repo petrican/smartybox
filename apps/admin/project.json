@@ -13,10 +13,26 @@
       },
       "configurations": {
         "development": {
-          "mode": "development"
+          "mode": "development",
+          "fileReplacements": [
+            {
+              "replace": "apps/admin/src/environments/environment.ts",
+              "with": "apps/admin/src/environments/environment.dev.ts"
+            }
+          ],
+          "outputPath": "dist/apps/admin",
+          "environmentFile": "apps/admin/src/environments/environment.dev.ts"
         },
         "production": {
-          "mode": "production"
+          "mode": "production",
+          "fileReplacements": [
+            {
+              "replace": "apps/admin/src/environments/environment.ts",
+              "with": "apps/admin/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputPath": "dist/apps/admin",
+          "environmentFile": "apps/admin/src/environments/environment.prod.ts"
         }
       }
     },

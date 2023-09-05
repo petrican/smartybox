@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@smartybox/cookies": ["cookies/src/index.ts"],
+      "@smartybox/lib/cookies": ["lib/cookies/src/index.ts"],
+      "@smartybox/libs/cookies": ["libs/cookies/src/index.ts"],
       "@smartybox/smartybox-plugin": ["libs/smartybox-plugin/src/index.ts"]
     }
   },

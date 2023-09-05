@@ -2,6 +2,11 @@ import styles from './LoginForm.module.scss';
 import {createSignal,Component, onMount} from "solid-js";
 import Title from "../Title/Title";
 
+import { environment} from '../../environments/environment';
+import { getCookie, setCookie } from "@smartybox/libs/cookies";
+import { useNavigate } from "@solidjs/router";
+
+
 type FormData = {
   username: string;
   password: string;
@@ -10,10 +15,19 @@ type FormData = {
 type FormErrors = {
   username: string;
   password: string;
+  server?: string;
 };
 
 
 const LoginForm: Component = () => {
+  const navigate = useNavigate();
+  const apiUrl = environment.apiUrl + '/login';
+  const isAuthenticated = Boolean(getCookie('token'));
+
+  if (isAuthenticated) { // Already authenticated
+    navigate('/');
+  }
+
   const [formData, setFormData] = createSignal<FormData>({
     username: "",
     password: "",
@@ -22,6 +36,7 @@ const LoginForm: Component = () => {
   const [errors, setErrors] = createSignal<FormErrors>({
     username: "",
     password: "",
+    server: ""
   });
 
   const [isLoaded, setIsLoaded] = createSignal(false);
@@ -45,11 +60,39 @@ const LoginForm: Component = () => {
   };
 
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = async (e: Event) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log('F:', formData())
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData()),
+        });
+
+        if (response.ok) {
+          // Login successful, handle the success scenario
+          const data = await response.json();
+          const { token } = data;
+          setCookie({ cookieName: 'token', cookieValue: token, expireDays: 1 });
+          navigate('/');
+        } else {
+          // Login failed, handle the error scenario
+          console.error('LOGIN failed')
+          const servErrors: FormErrors = {
+            username: "",
+            password: "",
+            server: "Invalid credentials. Pls retry."
+          };
+
+          setErrors(servErrors);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     } else {
       console.log('Form contains errors')
     }
@@ -87,6 +130,7 @@ const LoginForm: Component = () => {
             }
           />
           <span class={styles['error-message']}>{errors().password}</span>
+          <span className={styles['error-message']}>{errors().server}</span>
         </div>
         <div>
           <button type="submit">Login</button>
