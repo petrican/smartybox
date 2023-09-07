@@ -109,7 +109,7 @@ const LoginForm: Component = () => {
         cssClass={styles['login-form-title']}
       />
       <form onSubmit={handleSubmit}>
-        <div>
+        <div class={styles['username-wrapper']}>
           <input type="text"
                  name="username"
                  placeholder="Username"
@@ -119,7 +119,7 @@ const LoginForm: Component = () => {
           />
           <span class={styles['error-message']}>{errors().username}</span>
         </div>
-        <div>
+        <div  class={styles['password-wrapper']}>
           <input
             type="password"
             name="password"
@@ -130,7 +130,7 @@ const LoginForm: Component = () => {
             }
           />
           <span class={styles['error-message']}>{errors().password}</span>
-          <span className={styles['error-message']}>{errors().server}</span>
+          <span class={styles['error-message']}>{errors().server}</span>
         </div>
         <div>
           <button type="submit">Login</button>

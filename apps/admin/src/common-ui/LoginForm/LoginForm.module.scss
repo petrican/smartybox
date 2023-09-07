@@ -41,6 +41,11 @@
     color: $error-color;
     font-size: $font-size-small;
   }
+
+  .username-wrapper,.password-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .login-form-hidden {
