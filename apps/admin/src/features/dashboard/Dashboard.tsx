@@ -11,11 +11,13 @@ const Dashboard: Component = () => {
   // }
 
   return (
-    <header class={styles['dashboard']}>
-      Dashboard
+    <div class={styles['dashboard']}>
+      <div class={styles['column-left']}>Column 1</div>
+      <div class={styles['column-center']}>Column 2</div>
+      <div class={styles['column-right']}>Column 3</div>
 
       {/*Dashboard <button onClick={handleLogout}>Logout</button>*/}
-    </header>
+    </div>
   );
 };
 
