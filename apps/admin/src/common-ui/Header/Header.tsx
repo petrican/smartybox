@@ -19,8 +19,6 @@ const Header: Component = () => {
     window.dispatchEvent(new Event("cookieChange"));
   };
 
-  const renderLogin = () => currentPath === '/login' ? '' : (<a href="/login">Login</a>)
-
 
   return (
     <header class={styles['header']}>
@@ -31,7 +29,7 @@ const Header: Component = () => {
         <a href="/">Smartybox</a>
       </div>
       <div class={styles['login-button']}>
-        {sharedState({ token: ''}).token ? (<button onClick={handleLogout}>Logout</button>) : renderLogin()}
+        {sharedState({ token: ''}).token ? (<button onClick={handleLogout}>Logout</button>) : (<a href="/login">Login</a>)}
       </div>
     </header>
   );
