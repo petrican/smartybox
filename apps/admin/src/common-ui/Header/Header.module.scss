@@ -20,6 +20,11 @@
   width: 70%;
   text-align: center;
   flex-grow: 1; /* Allow the title to expand and take up space */
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
 }
 
 .login-button {

@@ -1,9 +1,21 @@
 .dashboard {
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   margin: 0 auto;
+  height: calc(100%);
+  padding: 1rem;
+}
+
+.dashboard-content {
+  padding-top: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
   height: calc(100%);
 }
 

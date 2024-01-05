@@ -2,7 +2,8 @@ import styles from './LoginForm.module.scss';
 import {createSignal,Component, onMount} from "solid-js";
 import Title from "../Title/Title";
 
-import { environment} from '../../environments/environment';
+
+import { environment } from '../../environments/environment';
 import { getCookie, setCookie } from "@smartybox/libs/cookies";
 import { useNavigate } from "@solidjs/router";
 
@@ -78,6 +79,8 @@ const LoginForm: Component = () => {
           const data = await response.json();
           const { token } = data;
           setCookie({ cookieName: 'token', cookieValue: token, expireDays: 1 });
+
+          window.dispatchEvent(new Event("cookieChange"));
           navigate('/');
         } else {
           // Login failed, handle the error scenario
@@ -89,6 +92,7 @@ const LoginForm: Component = () => {
           };
 
           setErrors(servErrors);
+          window.dispatchEvent(new Event("cookieChange"));
         }
       } catch (error) {
         console.error('Error:', error);
