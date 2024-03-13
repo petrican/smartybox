@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-
+import  Button  from '../Button/Button';
 import { deleteCookie } from "@smartybox/libs/cookies";
 import { useNavigate, useLocation } from "@solidjs/router";
 import styles from './Header.module.scss';
@@ -27,7 +27,7 @@ const Header: Component = () => {
         <a href="/">Smartybox</a>
       </div>
       <div class={styles['login-button']}>
-        {sharedState({ token: ''}).token ? (<button onClick={handleLogout}>Logout</button>) : (<a href="/login">Login</a>)}
+        {sharedState({ token: ''}).token ? (<Button handleClick={handleLogout} caption="Logout" />) : (<a href="/login">Login</a>)}
       </div>
     </header>
   );
