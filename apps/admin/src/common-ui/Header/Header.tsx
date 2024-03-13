@@ -8,8 +8,6 @@ import useCookieSync from "../../hooks/useCookieSync";
 
 const Header: Component = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const currentPath = location.pathname;
 
   const [sharedState] = useCookieSync();
 
