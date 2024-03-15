@@ -1,7 +1,7 @@
 import { Component } from "solid-js";
 import  Button  from '../Button/Button';
 import { deleteCookie } from "@smartybox/libs/cookies";
-import { useNavigate, useLocation } from "@solidjs/router";
+import { useNavigate } from "@solidjs/router";
 import styles from './Header.module.scss';
 import useCookieSync from "../../hooks/useCookieSync";
 
