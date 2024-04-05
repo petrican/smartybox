@@ -8,16 +8,14 @@
   color: white;
   font-family: 'Sen', sans-serif;
   font-size: 2.0625rem;
-  width: 100vw;
 }
 
 .header-logo {
-  width: 15%;
   text-align: left;
 }
 
 .header-title {
-  width: 70%;
+  padding-left: 5.4rem;
   text-align: center;
   flex-grow: 1; /* Allow the title to expand and take up space */
 
@@ -28,6 +26,7 @@
 }
 
 .login-button {
+  width: 6rem;
   text-align: right;
   padding-right: 1.5rem;
   font-size: 1.2rem;
