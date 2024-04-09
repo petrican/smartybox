@@ -10,27 +10,7 @@
 }
 
 .dashboard-content {
-  padding-top: 1rem;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-  height: calc(100%);
-}
-
-.column-center {
-  flex: 3;
-}
-
-.column-left, .column-right {
-  flex: 1;
-}
-
-.column-left {
-  margin-right: 0.625rem;
-}
-
-.column-right {
-  margin-left: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 2rem;
 }
