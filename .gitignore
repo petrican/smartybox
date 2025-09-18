@@ -44,3 +44,5 @@ package-lock.json
 
 
 /apps/admin/public/resources/*
+
+.nx/*
